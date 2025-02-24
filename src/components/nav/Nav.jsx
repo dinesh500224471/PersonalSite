@@ -4,17 +4,19 @@ import { BiHomeHeart, BiUser, BiBookBookmark, BiMessageSquareDetail } from 'reac
 import { HiDocumentText } from 'react-icons/hi';
 
 const Nav = () => {
-    const [activeNav, setActiveNav] = useState('#');
+    const [activeNav, setActiveNav] = useState('#home');
 
     return (
         <nav className="floating-nav">
-            <a href="#"
-                onClick={() => setActiveNav('#')}
-                className={activeNav === '#' ? 'active' : ''}>
+            {/* Home */}
+            <a href="#home"
+                onClick={() => setActiveNav('#home')}
+                className={activeNav === '#home' ? 'active' : ''}>
                 <BiHomeHeart />
                 <span>Home</span>
             </a>
 
+            {/* About */}
             <a href="#about"
                 onClick={() => setActiveNav('#about')}
                 className={activeNav === '#about' ? 'active' : ''}>
@@ -22,6 +24,7 @@ const Nav = () => {
                 <span>About</span>
             </a>
 
+            {/* Skills / Experience */}
             <a href="#experience"
                 onClick={() => setActiveNav('#experience')}
                 className={activeNav === '#experience' ? 'active' : ''}>
@@ -29,6 +32,7 @@ const Nav = () => {
                 <span>Skills</span>
             </a>
 
+            {/* Portfolio / Projects */}
             <a href="#portfolio"
                 onClick={() => setActiveNav('#portfolio')}
                 className={activeNav === '#portfolio' ? 'active' : ''}>
@@ -36,6 +40,7 @@ const Nav = () => {
                 <span>Projects</span>
             </a>
 
+            {/* Contact */}
             <a href="#contact"
                 onClick={() => setActiveNav('#contact')}
                 className={activeNav === '#contact' ? 'active' : ''}>

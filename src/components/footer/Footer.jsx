@@ -1,20 +1,12 @@
 import React from 'react';
 import './footer.css';
 import { FaFacebookF, FaLinkedinIn, FaGithubAlt } from 'react-icons/fa';
-import { AiOutlineYoutube, AiOutlineSkype } from 'react-icons/ai';
-import { RiDiscordLine } from 'react-icons/ri';
-import { ImBlogger2 } from 'react-icons/im';
-
 const Footer = () => {
     return (
         <footer>
             <div className="footer__container">
-                {/* Brand Logo */}
-                <a href="#" className='footer__logo'>Dinesh Chhetri</a>
-
                 {/* Navigation Links */}
-                <ul className='footer__nav'>
-                    <li><a href="#">Home</a></li>
+                <ul className="footer__nav" role="navigation">
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#services">Services</a></li>
@@ -22,12 +14,26 @@ const Footer = () => {
                     <li><a href="#contact">Contact</a></li>
                 </ul>
 
-                {/* Social Links */}
+                {/* Social Media Links */}
                 <div className="footer__socials">
-                    <a href="https://www.facebook.com/dinesh.chhetri.75286/" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
-                    <a href="https://www.linkedin.com/in/dinesh-chhetri/" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
-                    <a href="https://github.com/dinesh500224471" target="_blank" rel="noopener noreferrer"><FaGithubAlt /></a>
-                    
+                    <a href="https://www.facebook.com/dinesh.chhetri.75286/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook">
+                        <FaFacebookF />
+                    </a>
+                    <a href="https://www.linkedin.com/in/dinesh-chhetri/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        <FaLinkedinIn />
+                    </a>
+                    <a href="https://github.com/dinesh500224471"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <FaGithubAlt />
+                    </a>
                 </div>
             </div>
 

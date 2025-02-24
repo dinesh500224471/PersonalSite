@@ -4,8 +4,9 @@
     "\\src",
     "\\src\\assets",
     "\\src\\components",
-    "\\src\\components\\header"
+    "\\src\\components\\about",
+    "\\src\\components\\nav"
   ],
-  "SelectedNode": "\\src\\index.js",
+  "SelectedNode": "\\src\\components\\nav\\Nav.jsx",
   "PreviewInSolutionExplorer": false
 }
