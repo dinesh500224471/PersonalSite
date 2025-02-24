@@ -1,72 +1,107 @@
+/* ================== Experience Section ================== */
 .experience__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
+    padding: 2rem 0;
 }
 
-.experience__container>div {
-    background: var(--color-bg-variant);
-    padding: 2.4rem 5rem;
-    border-radius: 2rem;
-    border: 1px solid transparent;
-    transition: var(--transition);
+/* Experience Categories */
+.experience__category {
+    background: rgba(0, 15, 40, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    box-shadow: 0 8px 25px rgba(0, 0, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+    animation: gradientBackground 5s infinite alternate;
 }
 
-.experience__container>div:hover {
-    background: transparent;
-    border-color: var(--color-primary-variant);
-    cursor: default;
+    /* 3D Hover Effect */
+    .experience__category:hover {
+        transform: translateY(-5px) rotateX(5deg) rotateY(3deg);
+        box-shadow: 0 15px 40px rgba(0, 225, 255, 0.5);
+    }
+
+/* Gradient Animation */
+@keyframes gradientBackground {
+    0% {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+    }
+
+    100% {
+        background: linear-gradient(135deg, #091f46, #0b326f);
+    }
 }
 
-.experience__container>div h3 {
+/* Category Titles */
+.experience__category h3 {
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--color-primary);
+    color: cyan;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
 }
 
+/* Skill Details */
 .experience__content {
-    display: grid;
-    /* Khoảng cách giữ 2 column skill */
-    grid-template-columns: 1fr 0.75fr;
-    row-gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
 }
 
+/* Experience Card */
 .experience__details {
     display: flex;
+    align-items: center;
     gap: 1rem;
+    background: rgba(0, 25, 55, 0.8);
+    padding: 1rem;
+    border-radius: 10px;
+    transition: transform 0.4s ease-in-out, background 0.4s ease-in-out;
+    width: 45%;
+    position: relative;
+    border: 1px solid rgba(0, 225, 255, 0.3);
 }
 
+    /* Glowing Neon Effect on Hover */
+    .experience__details:hover {
+        background: rgba(0, 50, 100, 0.9);
+        transform: scale(1.1) rotateY(8deg);
+        box-shadow: 0 0 20px rgba(0, 225, 255, 0.5);
+        border: 1px solid rgba(0, 225, 255, 0.7);
+    }
+
+/* Icons */
 .experience__details-icon {
-    margin-top: 6px;
-    color: var(--color-primary);
+    font-size: 1.8rem;
+    color: cyan;
+    transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
-/* ================== Media Queries (Medium Devices ==============*/
-@media screen and (max-width: 1024px) {
-    .experience__container {
-        grid-template-columns: 1fr;
-    }
-
-    .experience__container>div {
-        width: 80%;
-        padding: 2rem;
-        margin: 0 auto;
-    }
-
-    .experience__content {
-        padding: 1rem;
-    }
+/* Bounce Icon Effect */
+.experience__details:hover .experience__details-icon {
+    transform: scale(1.3) rotate(10deg);
+    color: #00e1ff;
 }
 
+/* Text Styling */
+.experience__details h4 {
+    font-size: 1.1rem;
+    color: white;
+}
 
-/* ================== Media Queries (Medium Devices ==============*/
-@media screen and (max-width: 600px) {
-    .experience__container {
-        gap: 1rem;
-    }
+.text-light {
+    font-size: 0.9rem;
+    color: rgba(200, 255, 255, 0.7);
+}
 
-    .experience__container>div {
+/* ================== Responsive Styling ================== */
+@media screen and (max-width: 768px) {
+    .experience__details {
         width: 100%;
-        padding: 2rem 1rem;
     }
 }

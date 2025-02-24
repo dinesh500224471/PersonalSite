@@ -1,0 +1,70 @@
+﻿/* ================== CTA Buttons Styling ================== */
+.cta__container {
+    position: fixed; /* Ensures buttons stay fixed at the top */
+    top: 20px; /* Position from the top */
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Push buttons to the edges */
+    padding: 0 30px; /* Adds spacing from screen edges */
+    z-index: 100; /* Ensures buttons stay above all elements */
+}
+
+/* CTA Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Download Resume Button (Top-Left Corner) */
+.btn-download {
+    background: linear-gradient(135deg, #0077b6, #00a5cf);
+    border: 2px solid #0077b6;
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.5);
+    position: fixed;
+    left: 20px; /* Sticks to the left */
+}
+
+    .btn-download:hover {
+        transform: scale(1.07);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+
+/* Let's Connect Button (Top-Right Corner) */
+.btn-primary {
+    background: linear-gradient(135deg, #004e64, #00a5cf);
+    border: 2px solid #00a5cf;
+    box-shadow: 0 4px 12px rgba(0, 165, 207, 0.5);
+    position: fixed;
+    right: 20px; /* Sticks to the right */
+}
+
+    .btn-primary:hover {
+        transform: scale(1.07);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+
+/* ================== Responsive Fixes ================== */
+@media screen and (max-width: 768px) {
+    .cta__container {
+        padding: 0 15px; /* Reduce spacing on smaller screens */
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .btn-download {
+        left: 10px;
+    }
+
+    .btn-primary {
+        right: 10px;
+    }
+}

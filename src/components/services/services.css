@@ -1,71 +1,145 @@
-.services__containter {
+/* =================== General Services Styling =================== */
+.services__container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
-.service {
-    background: var(--color-bg-variant);
-    border-radius: 0 0 2rem 2rem;
-    border: 1px solid var(--color-primary);
-    height: fit-content;
-    transition: var(--transition);
-}
-
-.service:hover {
-    background: transparent;
-    border-color: var(--color-primary-variant);
-    cursor: default;
-}
-
-.service__head {
-    background: var(--color-primary);
-    padding: 2rem;
-    border-radius: 0 0 2rem 2rem;
-    box-shadow: 0 2rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-.service__head h3 {
-    color: var(--color-bg);
-    font-size: 1rem;
+/* Floating Cards */
+.floating-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 25px;
     text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
+    /* Floating Effect */
+    .floating-card:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 20px 35px rgba(0, 255, 255, 0.6);
+    }
+
+/* Card Headings */
+.service__head {
+    background: linear-gradient(135deg, #00a5cf, #0077b6);
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0, 255, 255, 0.4);
+}
+
+/* List Style */
 .service__list {
-    padding: 2rem;
+    list-style: none;
+    padding: 0;
 }
 
-.service__list li {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.8rem;
-}
+    /* List Items */
+    .service__list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        transition: transform 0.3s ease-in-out;
+    }
 
+        /* List Items Hover Effect */
+        .service__list li:hover {
+            transform: translateX(8px);
+        }
+
+/* Check Icon */
 .service__list-icon {
-    color: var(--color-primary);
-    margin-top: 2px;
+    color: cyan;
+    font-size: 1.3rem;
+    margin-right: 12px;
 }
 
-.service__list p {
-    font-size: 0.9rem;
-}
-
-/* ================== Media Queries (Medium Devices ==============*/
-@media screen and (max-width: 1024px) {
-    .services__containter {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+/* Spark Animation */
+@keyframes spark {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
     }
 
-    .service {
-        height: auto;
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
     }
 }
 
-/* ================== Media Queries (Medium Devices ==============*/
-@media screen and (max-width: 600px) {
-    .services__containter {
+/* Spark Effect on Hover */
+.floating-card::before,
+.floating-card::after {
+    content: "";
+    position: absolute;
+    background: rgba(0, 255, 255, 0.7);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: spark 2s infinite alternate ease-in-out;
+}
+
+/* Position Sparks */
+.floating-card::before {
+    top: 12%;
+    left: 18%;
+}
+
+.floating-card::after {
+    bottom: 12%;
+    right: 18%;
+}
+
+/* =================== Floating Animation =================== */
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Apply Floating Animation */
+.floating-card {
+    animation: floating 5s infinite ease-in-out;
+}
+
+    /* Neon Border Effect */
+    .floating-card:hover {
+        border: 2px solid rgba(0, 255, 255, 0.6);
+    }
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .services__container {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
+    }
+
+    .floating-card {
+        padding: 18px;
+    }
+
+    .service__list li {
+        font-size: 0.9rem;
     }
 }

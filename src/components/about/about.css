@@ -1,110 +1,194 @@
+/* ================== About Section Styling ================== */
 .about__container {
-    display: grid;
-    grid-template-columns: 35% 50%;
-    gap: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    padding: 3rem 0;
 }
 
+/* Left Image Section */
 .about__me {
     width: 100%;
+    max-width: 380px;
     aspect-ratio: 1/1;
-    border-radius: 2rem;
-    background: linear-gradient(45deg,
-            transparent,
-            var(--color-primary),
-            transparent);
-    display: grid;
-    place-items: center;
+    border-radius: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease-in-out;
 }
+
+    .about__me:hover {
+        transform: scale(1.05);
+    }
 
 .about__me-image {
-    border-radius: 2rem;
+    width: 90%;
+    border-radius: 20px;
     overflow: hidden;
-    /** độ nghiên ảnh about*/
-    transform: rotate(9deg);
-    transition: var(--transition);
+    transform: rotate(4deg);
+    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.about__me-image:hover {
-    transform: rotate(0);
+    .about__me-image:hover {
+        transform: rotate(0);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    }
+
+/* Right Content Section */
+.about__content {
+    flex: 1;
+    padding: 1rem;
 }
 
+/* About Cards */
 .about__cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
+/* Glassmorphism Card Effect */
 .about__card {
-    background: var(--color-bg-variant);
-    border: 1px solid transparent;
-    border-radius: 1rem;
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.8rem;
     text-align: center;
-    transition: var(--transition);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-.about__card:hover {
-    background: transparent;
-    border-color: var(--color-primary--variant);
-    cursor: default;
-}
+    /* Hover Effect with Scale and Glowing Border */
+    .about__card:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        border: 2px solid var(--color-primary);
+    }
 
+    /* Background Glow Effect */
+    .about__card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+        transition: opacity 0.4s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Activate Glow on Hover */
+    .about__card:hover::before {
+        opacity: 1;
+    }
+
+/* Icons */
 .about__icon {
     color: var(--color-primary);
-    font-size: 1.4rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.about__card h5 {
-    font-size: 0.95rem;
+/* Rotate Icon on Hover */
+.about__card:hover .about__icon {
+    transform: rotate(10deg) scale(1.2);
+    color: var(--color-light);
 }
 
+/* Text Animations */
+.about__card h5,
 .about__card small {
-    font-size: 0.7rem;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Move Text Slightly on Hover */
+.about__card:hover h5 {
+    transform: translateY(-3px);
+    color: white;
+}
+
+.about__card:hover small {
+    transform: translateY(-2px);
     color: var(--color-light);
 }
 
+/* About Text */
 .about__content p {
-    margin: 2rem 0 2.6rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: var(--color-light);
+    margin-bottom: 2rem;
+    text-align: justify;
 }
 
+/* CTA Button */
+.btn-primary {
+    display: inline-block;
+    padding: 0.9rem 1.6rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background: var(--color-primary);
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+}
 
-/* ================== Media Queries (Medium Devices ==============*/
+    .btn-primary:hover {
+        background: white;
+        color: var(--color-primary);
+        transform: scale(1.07);
+    }
+
+/* ================== Responsive Styling ================== */
 @media screen and (max-width: 1024px) {
     .about__container {
-        grid-template-columns: 1fr;
-        gap: 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
     }
 
     .about__me {
-        width: 50%;
-        margin: 2rem auto 4rem;
+        max-width: 300px;
     }
 
-    .about__content {
-        margin: 1rem 0 1.5rem;
-    }
-}
-
-
-/* ================== Media Queries (Medium Devices ==============*/
-@media screen and (max-width: 600px) {
-    .about__me {
-        width: 65%;
-        margin: 0 auto 3rem;
+    .about__cards {
+        flex-direction: column;
+        align-items: center;
     }
 
     .about__card {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .about__me {
+        max-width: 220px;
     }
 
-    .about__content {
-        text-align: center;
+    .about__card {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .about__icon {
+        font-size: 1.6rem;
     }
 
     .about__content p {
-        margin: 1.5rem 0
+        font-size: 1rem;
     }
 }

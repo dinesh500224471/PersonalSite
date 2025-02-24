@@ -1,69 +1,68 @@
-import React from 'react'
-import './portfolio.css'
-import IMG1 from '../../assets/portfolio1.jpg'
-import IMG2 from '../../assets/portfolio2.jpg'
-import IMG3 from '../../assets/portfolio3.jpg'
-import IMG4 from '../../assets/portfolio4.jpg'
+import React from 'react';
+import './portfolio.css';
 
-//Do not use the images in production
-const data = [
+// Images (Replace with actual screenshots of your projects)
+import IMG1 from '../../assets/portfolio1.png';
+import IMG2 from '../../assets/portfolio2.png';
+import IMG3 from '../../assets/portfolio3.jpg';
+import IMG4 from '../../assets/portfolio4.png';
+
+// Projects Data (Based on Your GitHub Repositories)
+const projects = [
     {
         id: 1,
         image: IMG1,
-        title: 'Personal Blog Website uses Jekyll (is a static site generator) and is hosted on Github.',
-        github: 'https://github.com/NguyenVu1310/NguyenVu1310.github.io',
-        demo: 'https://nguyenvu1310.github.io/',
+        title: 'Windows XP - Password Cracking with Cain & Abel',
+        description: 'Demonstrating the process of user account creation and password cracking using Cain & Abel on a Windows XP VM.',
+        github: 'https://github.com/dinesh500224471/Windows-XP_Cain-Abel',
     },
     {
         id: 2,
         image: IMG2,
-        title: 'My Personal Portfolio Website uses React and is deployed on Netlify.',
-        github: 'https://github.com/NguyenVu1310/netlify-personal-site',
-        demo: 'https://nguyenvu-personal-site.netlify.app/',
+        title: 'Cinema Ticket Machine (Java Project)',
+        description: 'A Java-based cinema ticket machine simulation developed in NetBeans IDE with seat selection and payment simulation.',
+        github: 'https://github.com/dinesh500224471/CinemaTicketMachine',
     },
     {
         id: 3,
         image: IMG3,
-        title: 'A Todo-List application simple developed based on React and deployed on Netlify.',
-        github: 'https://github.com/NguyenVu1310/todoList-react',
-        demo: 'https://nguyenvu-todo-list.netlify.app/',
+        title: 'Microsoft Malware Dataset Analysis',
+        description: 'Data science analysis on Microsoft Malware dataset using Jupyter Notebook and Python for visualization.',
+        github: 'https://github.com/dinesh500224471/Microsoft-Malware',
     },
     {
         id: 4,
         image: IMG4,
-        title: 'A graduation project was done by my team. A website scans malicious content in URLs and blocks sites on blacklists.',
-        github: 'https://github.com/NguyenVu1310/threeblock',
-        demo: 'https://3block.systems/',
+        title: 'Cryptography Algorithms - Python Implementation',
+        description: 'Implementing encryption and decryption using cryptography algorithms in Python.',
+        github: 'https://github.com/dinesh500224471/Crytpography',
     },
-]
-
+];
 
 const Portfolio = () => {
     return (
-        <section id='portfolio'>
+        <section id="portfolio">
             <h5>My Recent Projects</h5>
             <h2>Portfolio</h2>
 
             <div className="container portfolio__container">
-                {
-                    data.map(({ id, image, title, github, demo }) => {
-                        return (
-                            <article key={id} className='portfolio__item'>
-                                <div className="portfolio__item-image">
-                                    <img src={image} alt={title} />
-                                </div>
-                                <h3>{title}</h3>
-                                <div className="portfolio__item-cta">
-                                    <a href={github} className='btn' target='_blank'>Github</a>
-                                    <a href={demo} className='btn btn-primary' target='_blank'>Live Demo</a>
-                                </div>
-                            </article>
-                        )
-                    })
-                }
+                {projects.map(({ id, image, title, description, github }) => (
+                    <article key={id} className="portfolio__item">
+                        <div className="portfolio__item-image">
+                            <img src={image} alt={title} />
+                        </div>
+                        <h3>{title}</h3>
+                        <p>{description}</p>
+                        <div className="portfolio__item-cta">
+                            <a href={github} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                                View on GitHub
+                            </a>
+                        </div>
+                    </article>
+                ))}
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Portfolio
+export default Portfolio;

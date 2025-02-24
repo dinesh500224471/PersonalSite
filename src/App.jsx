@@ -7,11 +7,8 @@ import Footer from './components/footer/Footer'
 import Nav from './components/nav/Nav'
 import Portfolio from './components/portfolio/Portfolio'
 import Services from './components/services/Services'
-import Testimonials from './components/testimonials/Testimonials'
-/** 
- * Thêm vào dòng 24 để hiện Testimonials
- * <Testimonials />
-*/
+
+
 const App = () => {
     return (
         <>
