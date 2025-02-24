@@ -46,21 +46,28 @@ const About = () => {
                     </div>
 
                     <p>
-                        I am a **Cybersecurity Professional** specializing in **Identity & Access Management (IAM), SIEM, and Security Operations**.
-                        With expertise in **Okta, Microsoft Entra ID (Azure AD), MFA, and SSO**, I focus on strengthening **access controls, risk management, and compliance**.
-                        
-                    </p>
+    I am a <strong>Cybersecurity Professional</strong> specializing in 
+    <strong>Identity & Access Management (IAM), SIEM, and Security Operations</strong>.
+    With expertise in <strong>Okta, Microsoft Entra ID (Azure AD), MFA, and SSO</strong>, 
+    I focus on strengthening <strong>access controls, risk management, and compliance</strong>.
+</p>
 
-                    <p>
-                        In my career, I have worked as a **Security Analyst** at **D & D ERP Consulting**, where I implemented **RBAC, MFA**, and automated security processes.
-                        I have also served as an **IT Administrator**, managing Active Directory, securing networks, and ensuring **99.5% uptime**.
-                        My contributions in **malware analysis, data breach detection, and botnet mitigation** have been recognized in academic research.
-                    </p>
+<p>
+    In my career, I have worked as a <strong>Security Analyst</strong> at 
+    <strong>D & D ERP Consulting</strong>, where I implemented <strong>RBAC, MFA</strong>, 
+    and automated security processes. I have also served as an <strong>IT Administrator</strong>, 
+    managing <strong>Active Directory</strong>, securing networks, and ensuring <strong>99.5% uptime</strong>. 
+    My contributions in <strong>malware analysis, data breach detection, and botnet mitigation</strong> 
+    have been recognized in academic research.
+</p>
 
-                    <p>
-                        My goal is to become a **Certified Security Professional**, pursuing **CISSP, CISA, and advanced cybersecurity certifications**.
-                        I am passionate about **threat intelligence, digital forensics**, continuously evolving in the **cyber defense landscape**.
-                    </p>
+<p>
+    My goal is to become a <strong>Certified Security Professional</strong>, pursuing 
+    <strong>CISSP, CISA, and advanced cybersecurity certifications</strong>. 
+    I am passionate about <strong>threat intelligence, digital forensics</strong>, 
+    continuously evolving in the <strong>cyber defense landscape</strong>.
+</p>
+
 
                     <a href="#contact" className='btn btn-primary'>Let's Talk</a>
                 </div>
