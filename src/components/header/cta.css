@@ -23,8 +23,8 @@
 
 /* Download Resume Button (Top-Left Corner) */
 .btn-download {
-    background: linear-gradient(135deg, #0077b6, #00a5cf);
-    border: 2px solid #0077b6;
+    background: linear-gradient(135deg, #004e64, #00a5cf);
+    border: 2px solid #00a5cf;
     box-shadow: 0 4px 12px rgba(0, 119, 182, 0.5);
     position: fixed;
     left: 20px; /* Sticks to the left */
