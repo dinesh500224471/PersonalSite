@@ -141,7 +141,7 @@ const Skills = () => {
     return (
         <section id="skills">
             <div className="container">
-                <span className="section__tag">// system.scan</span>
+                <span className="section__tag">{'// system.scan'}</span>
                 <h2 className="section__title">
                     <span className="text-gradient">Arsenal</span>
                 </h2>
