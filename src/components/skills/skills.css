@@ -1,0 +1,284 @@
+/* ─── Skills Section ─── */
+#skills {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ─── Animated grid background ─── */
+#skills::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#skills .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Tabs ─── */
+.skills__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.skills__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.2rem;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.04em;
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills__tab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--tab-color);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    border-radius: inherit;
+}
+
+.skills__tab:hover {
+    border-color: var(--tab-color);
+    color: var(--tab-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--tab-color) 40%, transparent);
+}
+
+.skills__tab.active {
+    border-color: var(--tab-color);
+    color: #0a0a1a;
+    background: var(--tab-color);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--tab-color) 50%, transparent),
+                0 0 50px color-mix(in srgb, var(--tab-color) 20%, transparent);
+}
+
+.skills__tab-icon {
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.skills__tab-label {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Scan line ─── */
+.skills__scan-line {
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--scan-color) 20%,
+        var(--scan-color) 80%,
+        transparent 100%);
+    margin-bottom: 2.5rem;
+    position: relative;
+    box-shadow: 0 0 12px var(--scan-color), 0 0 30px color-mix(in srgb, var(--scan-color) 40%, transparent);
+    animation: scanPulse 2s ease-in-out infinite;
+}
+
+.skills__scan-line::before,
+.skills__scan-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--scan-color);
+    box-shadow: 0 0 10px var(--scan-color);
+}
+
+.skills__scan-line::before { left: 0; }
+.skills__scan-line::after  { right: 0; }
+
+@keyframes scanPulse {
+    0%, 100% { opacity: 0.8; }
+    50%       { opacity: 1; }
+}
+
+/* ─── Grid ─── */
+.skills__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+}
+
+/* ─── Skill Card ─── */
+.skill-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem 1.2rem;
+    cursor: default;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+    animation: cardIn 0.5s ease both;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: perspective(600px) translateY(24px) rotateX(12deg);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(600px) translateY(0) rotateX(0);
+    }
+}
+
+.skill-card:hover {
+    border-color: var(--skill-color);
+    box-shadow:
+        0 0 20px color-mix(in srgb, var(--skill-color) 30%, transparent),
+        0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* moving radial glow follows mouse */
+.skill-card__glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: background 0.1s ease;
+    z-index: 0;
+}
+
+/* corner brackets */
+.skill-card__corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--skill-color);
+    border-style: solid;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-card:hover .skill-card__corner { opacity: 1; }
+
+.skill-card__corner--tl {
+    top: 6px;
+    left: 6px;
+    border-width: 1.5px 0 0 1.5px;
+}
+
+.skill-card__corner--br {
+    bottom: 6px;
+    right: 6px;
+    border-width: 0 1.5px 1.5px 0;
+}
+
+/* content */
+.skill-card__icon {
+    font-size: 1.7rem;
+    margin-bottom: 0.6rem;
+    position: relative;
+    z-index: 1;
+    display: block;
+    filter: drop-shadow(0 0 6px var(--skill-color));
+}
+
+.skill-card__name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.03em;
+}
+
+/* progress bar */
+.skill-card__bar-wrap {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.skill-card__bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--skill-color), color-mix(in srgb, var(--skill-color) 60%, white));
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--skill-color);
+    animation: barFill 0.9s ease both;
+    animation-delay: calc(var(--delay, 0s) + 0.2s);
+}
+
+@keyframes barFill {
+    from { width: 0; }
+    to   { width: var(--pct); }
+}
+
+.skill-card__level {
+    font-size: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--skill-color);
+    text-align: right;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Responsive ─── */
+@media screen and (max-width: 1024px) {
+    .skills__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .skills__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .skills__tab-label {
+        display: none;
+    }
+
+    .skills__tab {
+        padding: 0.55rem 0.8rem;
+    }
+
+    .skill-card {
+        padding: 1rem 0.9rem 0.9rem;
+    }
+
+    .skill-card__name {
+        font-size: 0.72rem;
+    }
+}

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './nav.css';
-import { BiHomeHeart, BiUser, BiBookBookmark, BiMessageSquareDetail } from 'react-icons/bi';
+import { BiHomeHeart, BiUser, BiBookBookmark, BiMessageSquareDetail, BiShield } from 'react-icons/bi';
 import { HiDocumentText } from 'react-icons/hi';
 
 const links = [
     { id: '#home',       icon: <BiHomeHeart />,           label: 'Home'     },
     { id: '#about',      icon: <BiUser />,                label: 'About'    },
-    { id: '#experience', icon: <BiBookBookmark />,         label: 'Skills'   },
+    { id: '#experience', icon: <BiBookBookmark />,         label: 'Experience' },
+    { id: '#skills',     icon: <BiShield />,              label: 'Arsenal'  },
     { id: '#portfolio',  icon: <HiDocumentText />,         label: 'Projects' },
     { id: '#contact',    icon: <BiMessageSquareDetail />,  label: 'Contact'  },
 ];
