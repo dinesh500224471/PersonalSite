@@ -1,7 +1,7 @@
 import React from 'react';
 import './services.css';
 import { BsCheckLg } from 'react-icons/bs';
-import { HiAcademicCap, HiTrophy, HiCommandLine } from 'react-icons/hi2';
+import { HiAcademicCap, HiChip, HiTerminal } from 'react-icons/hi';
 
 const servicesData = [
     {
@@ -19,7 +19,7 @@ const servicesData = [
         ],
     },
     {
-        icon: <HiTrophy />,
+        icon: <HiChip />,
         title: 'Achievements',
         color: '#7b2fff',
         skills: [
@@ -32,7 +32,7 @@ const servicesData = [
         ],
     },
     {
-        icon: <HiCommandLine />,
+        icon: <HiTerminal />,
         title: 'Research Platforms',
         color: '#00d4ff',
         skills: [
