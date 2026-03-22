@@ -1,48 +1,68 @@
 import React from 'react';
 import './footer.css';
 import { FaFacebookF, FaLinkedinIn, FaGithubAlt } from 'react-icons/fa';
-const Footer = () => {
-    return (
-        <footer>
-            <div className="footer__container">
-                {/* Navigation Links */}
-                <ul className="footer__nav" role="navigation">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+
+const navLinks = [
+    { href: '#about',      label: 'About'    },
+    { href: '#experience', label: 'Skills'   },
+    { href: '#services',   label: 'Learning' },
+    { href: '#portfolio',  label: 'Projects' },
+    { href: '#contact',    label: 'Contact'  },
+];
+
+const socials = [
+    { href: 'https://www.facebook.com/dinesh.chhetri.75286/', icon: <FaFacebookF />, label: 'Facebook' },
+    { href: 'https://www.linkedin.com/in/dinesh-chhetri/',    icon: <FaLinkedinIn />, label: 'LinkedIn' },
+    { href: 'https://github.com/dinesh500224471',             icon: <FaGithubAlt />, label: 'GitHub'   },
+];
+
+const Footer = () => (
+    <footer>
+        {/* Top divider glow */}
+        <div className="footer__glow-line" aria-hidden="true" />
+
+        <div className="footer__inner">
+            {/* Logo / name */}
+            <a href="#home" className="footer__brand">
+                <span className="footer__brand-name">Dinesh Chhetri</span>
+                <span className="footer__brand-role">Cybersecurity Professional</span>
+            </a>
+
+            {/* Nav */}
+            <nav aria-label="Footer navigation">
+                <ul className="footer__nav">
+                    {navLinks.map(({ href, label }) => (
+                        <li key={href}>
+                            <a href={href}>{label}</a>
+                        </li>
+                    ))}
                 </ul>
+            </nav>
 
-                {/* Social Media Links */}
-                <div className="footer__socials">
-                    <a href="https://www.facebook.com/dinesh.chhetri.75286/"
+            {/* Socials */}
+            <div className="footer__socials">
+                {socials.map(({ href, icon, label }) => (
+                    <a
+                        key={label}
+                        href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Facebook">
-                        <FaFacebookF />
+                        aria-label={label}
+                        className="footer__social-link"
+                    >
+                        {icon}
                     </a>
-                    <a href="https://www.linkedin.com/in/dinesh-chhetri/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="LinkedIn">
-                        <FaLinkedinIn />
-                    </a>
-                    <a href="https://github.com/dinesh500224471"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="GitHub">
-                        <FaGithubAlt />
-                    </a>
-                </div>
+                ))}
             </div>
+        </div>
 
-            {/* Footer Copyright */}
-            <div className="footer__bottom">
-                <small>Designed & Developed by <b>Dinesh Chhetri</b></small>
-            </div>
-        </footer>
-    );
-}
+        {/* Bottom */}
+        <div className="footer__bottom">
+            <small>
+                Designed &amp; Developed with ♥ by <strong>Dinesh Chhetri</strong>
+            </small>
+        </div>
+    </footer>
+);
 
 export default Footer;

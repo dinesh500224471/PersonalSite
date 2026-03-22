@@ -1,145 +1,132 @@
-/* =================== General Services Styling =================== */
+/* ═══════════════════════════════════════
+   SERVICES – Floating 3D Cards
+═══════════════════════════════════════ */
 .services__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-top: 2rem;
 }
 
-/* Floating Cards */
-.floating-card {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
-    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+/* ── Service card ── */
+.svc-card {
+    background: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
     position: relative;
     overflow: hidden;
+    transition: var(--transition);
+    animation: card-float 5s ease-in-out infinite;
 }
 
-    /* Floating Effect */
-    .floating-card:hover {
-        transform: translateY(-12px) scale(1.03);
-        box-shadow: 0 20px 35px rgba(0, 255, 255, 0.6);
-    }
+.svc-card:nth-child(2) { animation-delay: 1.5s; }
+.svc-card:nth-child(3) { animation-delay: 3s; }
 
-/* Card Headings */
-.service__head {
-    background: linear-gradient(135deg, #00a5cf, #0077b6);
-    padding: 12px;
-    border-radius: 12px;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    box-shadow: 0 3px 10px rgba(0, 255, 255, 0.4);
+@keyframes card-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
 }
 
-/* List Style */
-.service__list {
-    list-style: none;
-    padding: 0;
-}
-
-    /* List Items */
-    .service__list li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 12px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-        /* List Items Hover Effect */
-        .service__list li:hover {
-            transform: translateX(8px);
-        }
-
-/* Check Icon */
-.service__list-icon {
-    color: cyan;
-    font-size: 1.3rem;
-    margin-right: 12px;
-}
-
-/* Spark Animation */
-@keyframes spark {
-    0% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.5);
-    }
-}
-
-/* Spark Effect on Hover */
-.floating-card::before,
-.floating-card::after {
-    content: "";
+.svc-card::before {
+    content: '';
     position: absolute;
-    background: rgba(0, 255, 255, 0.7);
-    width: 10px;
-    height: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--svc-color, var(--color-primary)), transparent);
+}
+
+.svc-card::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    animation: spark 2s infinite alternate ease-in-out;
+    background: radial-gradient(circle, var(--svc-color, var(--color-primary)), transparent 70%);
+    opacity: 0.05;
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Position Sparks */
-.floating-card::before {
-    top: 12%;
-    left: 18%;
+.svc-card:hover {
+    border-color: var(--svc-color, var(--color-primary));
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--svc-color, var(--color-primary));
+    transform: translateY(-12px) scale(1.01);
+    animation-play-state: paused;
 }
 
-.floating-card::after {
-    bottom: 12%;
-    right: 18%;
+.svc-card:hover::after {
+    opacity: 0.12;
+    transform: scale(1.3);
 }
 
-/* =================== Floating Animation =================== */
-@keyframes floating {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
+/* ── Card header ── */
+.svc-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Apply Floating Animation */
-.floating-card {
-    animation: floating 5s infinite ease-in-out;
+.svc-card__icon {
+    font-size: 1.6rem;
+    color: var(--svc-color, var(--color-primary));
+    filter: drop-shadow(0 0 8px var(--svc-color, var(--color-primary)));
+    flex-shrink: 0;
 }
 
-    /* Neon Border Effect */
-    .floating-card:hover {
-        border: 2px solid rgba(0, 255, 255, 0.6);
-    }
+.svc-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+}
 
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
+/* ── Skills list ── */
+.svc-card__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.svc-card__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    color: var(--color-light);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.svc-card__list li:hover {
+    transform: translateX(6px);
+    color: var(--color-lighter);
+}
+
+.svc-card__check {
+    color: var(--svc-color, var(--color-primary));
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* ══════════════════ Responsive ══════════════════ */
+@media screen and (max-width: 1024px) {
     .services__container {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        max-width: 560px;
+        margin: 0 auto;
     }
 
-    .floating-card {
-        padding: 18px;
+    .svc-card {
+        animation: none;
     }
+}
 
-    .service__list li {
-        font-size: 0.9rem;
+@media screen and (max-width: 600px) {
+    .svc-card {
+        padding: 1.5rem;
     }
 }

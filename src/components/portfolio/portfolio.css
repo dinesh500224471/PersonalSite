@@ -1,116 +1,237 @@
-/* ================= Portfolio Section ================= */
+/* ═══════════════════════════════════════
+   PORTFOLIO – 3D Flip Cards
+═══════════════════════════════════════ */
+.portfolio__hint {
+    text-align: center;
+    color: var(--color-light);
+    font-size: 0.85rem;
+    margin-top: -2.5rem;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+}
+
 .portfolio__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
 }
 
-/* Floating Portfolio Card */
-.portfolio__item {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+/* ── Card wrapper ── */
+.pf-card {
+    perspective: 1200px;
+    height: 460px;
+    cursor: pointer;
     position: relative;
 }
 
-    /* Floating Effect */
-    .portfolio__item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 255, 255, 0.5);
-    }
-
-/* Portfolio Image */
-.portfolio__item-image {
-    border-radius: 10px;
-    overflow: hidden;
+.pf-card__inner {
     width: 100%;
-    height: 180px;
+    height: 100%;
     position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: var(--border-radius);
 }
 
-    /* Floating Image Effect */
-    .portfolio__item-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease-in-out;
+.pf-card.flipped .pf-card__inner {
+    transform: rotateY(180deg);
+}
+
+/* ── Both faces ── */
+.pf-card__face {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    border: 1px solid var(--color-glass-border);
+    background: var(--color-bg-2);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pf-card:hover .pf-card__face {
+    border-color: var(--pf-color, var(--color-primary));
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--pf-color, var(--color-primary));
+}
+
+/* ── Front face ── */
+.pf-card__back {
+    transform: rotateY(180deg);
+}
+
+.pf-card__img {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pf-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.pf-card:hover .pf-card__img img {
+    transform: scale(1.06);
+}
+
+.pf-card__img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--color-bg-2) 100%);
+}
+
+.pf-card__front-body {
+    padding: 1.4rem 1.6rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.pf-card__title {
+    font-size: 1.05rem;
+    color: var(--color-white);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.pf-card__subtitle {
+    font-size: 0.8rem;
+    color: var(--pf-color, var(--color-primary));
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.pf-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.pf-card__flip-hint {
+    margin-top: auto;
+    font-size: 0.75rem;
+    color: var(--color-light);
+    letter-spacing: 0.05em;
+    animation: hint-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1; }
+}
+
+/* ── Back face ── */
+.pf-card__back {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--color-bg-2) 0%, rgba(5,5,20,0.98) 100%);
+}
+
+.pf-card__back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--pf-color, var(--color-primary)), transparent);
+}
+
+.pf-card__back-header h3 {
+    font-size: 1rem;
+    color: var(--pf-color, var(--color-primary));
+    margin-bottom: 0.5rem;
+}
+
+.pf-card__back-desc {
+    font-size: 0.8rem;
+    color: var(--color-light);
+    line-height: 1.6;
+}
+
+/* ── What I did list ── */
+.pf-card__what h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pf-color, var(--color-primary));
+    margin-bottom: 0.6rem;
+}
+
+.pf-card__what ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.pf-card__what li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--color-lighter);
+    line-height: 1.5;
+}
+
+.pf-card__bullet {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pf-color, var(--color-primary));
+    box-shadow: 0 0 6px var(--pf-color, var(--color-primary));
+    margin-top: 5px;
+}
+
+.pf-card__back-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.pf-card__github {
+    font-size: 0.85rem;
+    padding: 0.65rem 1.4rem;
+    justify-content: center;
+}
+
+/* ══════════════════ Responsive ══════════════════ */
+@media screen and (max-width: 1024px) {
+    .portfolio__container {
+        grid-template-columns: 1fr 1fr;
     }
 
-/* Image Movement on Hover */
-.portfolio__item:hover .portfolio__item-image img {
-    transform: scale(1.05) rotate(2deg);
-}
-
-/* Portfolio Title */
-.portfolio__item h3 {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: white;
-}
-
-/* Portfolio Description */
-.portfolio__item p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1rem;
-}
-
-/* CTA Button */
-.portfolio__item-cta .btn-primary {
-    background: linear-gradient(135deg, #0077b6, #00a5cf);
-    border: 2px solid #00a5cf;
-    box-shadow: 0 4px 12px rgba(0, 165, 207, 0.5);
-    font-size: 0.9rem;
-    padding: 10px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-    /* Button Hover Effect */
-    .portfolio__item-cta .btn-primary:hover {
-        transform: scale(1.07);
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
-    }
-
-/* ================= Floating Animation ================= */
-@keyframes floating {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-
-    100% {
-        transform: translateY(0px);
+    .pf-card {
+        height: 480px;
     }
 }
 
-/* Apply Floating Animation to Portfolio Cards */
-.portfolio__item {
-    animation: floating 4s infinite ease-in-out;
-}
-
-/* ================= Responsive Adjustments ================= */
 @media screen and (max-width: 768px) {
     .portfolio__container {
         grid-template-columns: 1fr;
-        gap: 1rem;
     }
 
-    .portfolio__item p {
-        font-size: 0.85rem;
+    .pf-card {
+        height: 440px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .pf-card {
+        height: auto;
+        min-height: 420px;
     }
 
-    .portfolio__item-cta .btn-primary {
-        font-size: 0.85rem;
-        padding: 8px 12px;
+    .pf-card__inner {
+        height: 420px;
     }
 }

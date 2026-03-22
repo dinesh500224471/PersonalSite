@@ -1,144 +1,110 @@
-/* ================== Center Contact Section ================== */
-.container.contact__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers all content horizontally */
-    justify-content: center; /* Centers content vertically */
-    text-align: center;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem 0;
+/* ═══════════════════════════════════════
+   CONTACT – Glassmorphism Glow Cards
+═══════════════════════════════════════ */
+.contact__container {
+    max-width: 900px;
 }
 
-/* ================= Floating Contact Options ================= */
 .contact__options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    width: 100%;
 }
 
-/* ================= Contact Cards with Floating Animation ================= */
-.contact__option {
-    background: linear-gradient(135deg, #0077b6, #00a5cf);
-    padding: 1.5rem;
-    border-radius: 12px;
+/* ── Contact card ── */
+.contact__card {
+    background: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--border-radius);
+    padding: 2.5rem 2rem;
     text-align: center;
-    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    width: 100%;
-    max-width: 350px;
     position: relative;
-    animation: float 4s infinite ease-in-out; /* Floating Animation */
-}
-
-    /* Hover Effect - Lift & Glow */
-    .contact__option:hover {
-        transform: translateY(-10px) scale(1.05);
-        box-shadow: 0 12px 24px rgba(0, 255, 255, 0.6);
-        background: linear-gradient(135deg, #ff7eb3, #ff758c);
-    }
-
-/* Floating Animation */
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-/* ================= Contact Form with Smooth Transition ================= */
-form {
+    overflow: hidden;
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 500px;
-    gap: 1.2rem;
-    margin-top: 1rem;
-    animation: fadeIn 0.8s ease-in-out; /* Smooth Fade-in Animation */
+    gap: 0.6rem;
 }
 
-/* Input & Textarea Styling */
-input,
-textarea {
-    width: 100%;
-    padding: 1.3rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid var(--color-primary);
-    color: white;
+.contact__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--ct-color, var(--color-primary)), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.contact__card:hover {
+    border-color: var(--ct-color, var(--color-primary));
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px var(--ct-color, var(--color-primary)),
+        0 0 40px rgba(0, 212, 255, 0.15);
+}
+
+.contact__card:hover::before {
+    opacity: 0.06;
+}
+
+/* Icon */
+.contact__card-icon {
+    font-size: 2.2rem;
+    color: var(--ct-color, var(--color-primary));
+    filter: drop-shadow(0 0 10px var(--ct-color, var(--color-primary)));
+    transition: transform 0.3s ease;
+}
+
+.contact__card:hover .contact__card-icon {
+    transform: scale(1.2) translateY(-4px);
+}
+
+/* Text */
+.contact__card-label {
     font-size: 1rem;
-    outline: none;
-    transition: background 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    font-weight: 700;
+    color: var(--color-white);
 }
 
-    /* Focus Effect */
-    input:focus,
-    textarea:focus {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: yellow;
-    }
+.contact__card-value {
+    font-size: 0.82rem;
+    color: var(--color-light);
+    word-break: break-all;
+}
 
-/* ================= Button with Floating Glow Effect ================= */
-.btn-primary {
+/* CTA link */
+.contact__card-link {
     display: inline-block;
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #0077b6, #00a5cf);
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    transition: all 0.4s ease-in-out;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
-    position: relative;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    width: 100%;
-    animation: float 4s infinite ease-in-out; /* Button also floats */
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ct-color, var(--color-primary));
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid transparent;
 }
 
-    /* Hover Effect */
-    .btn-primary:hover {
-        background: white;
-        color: #0077b6;
-        transform: scale(1.07);
-        box-shadow: 0 6px 18px rgba(0, 255, 255, 0.5);
-    }
-
-/* ================== Animations ================== */
-/* Smooth Fade-in Effect */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
+.contact__card-link:hover {
+    color: var(--color-white);
+    border-bottom-color: var(--color-white);
 }
 
-/* ================= Responsive Adjustments ================= */
+/* ══════════════════ Responsive ══════════════════ */
 @media screen and (max-width: 768px) {
-    .container.contact__container {
-        width: 90%;
+    .contact__options {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin: 0 auto;
     }
+}
 
-    .contact__option {
-        max-width: 300px;
+@media screen and (max-width: 600px) {
+    .contact__card {
+        padding: 2rem 1.5rem;
     }
 }

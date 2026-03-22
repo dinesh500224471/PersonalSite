@@ -1,177 +1,326 @@
-/* ================== General Header Styling ================== */
-header {
-    height: 100vh;
-    padding-top: 3rem;
+/* ═══════════════════════════════════════
+   HEADER – 3D Hero Section
+═══════════════════════════════════════ */
+.header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
     overflow: hidden;
+    padding-top: 5rem;
+}
+
+/* ── Particle canvas ── */
+.particle-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Ambient glow orbs ── */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: orb-pulse 8s ease-in-out infinite alternate;
+}
+
+.orb--cyan {
+    width: 500px;
+    height: 500px;
+    background: rgba(0, 212, 255, 0.08);
+    top: -150px;
+    left: -100px;
+}
+
+.orb--purple {
+    width: 600px;
+    height: 600px;
+    background: rgba(123, 47, 255, 0.08);
+    bottom: -200px;
+    right: -100px;
+    animation-delay: -4s;
+}
+
+@keyframes orb-pulse {
+    from { opacity: 0.5; transform: scale(1); }
+    to   { opacity: 1;   transform: scale(1.15); }
+}
+
+/* ── Container layout ── */
+.header__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - 5rem);
+    padding: 3rem 0;
+}
+
+/* ── Text side ── */
+.header__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.header__greeting {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    opacity: 0;
+    animation: fade-up 0.7s ease forwards 0.2s;
+}
+
+.header__name {
+    line-height: 1.05;
+    opacity: 0;
+    animation: fade-up 0.7s ease forwards 0.4s;
+}
+
+.header__subtitle {
+    color: var(--color-light);
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0;
+    animation: fade-up 0.7s ease forwards 0.6s;
+}
+
+/* ── Cert tag cloud ── */
+.header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fade-up 0.7s ease forwards 0.8s;
+}
+
+.header__tags .tag {
+    animation: tag-float 0.5s ease both;
+}
+
+@keyframes tag-float {
+    from { opacity: 0; transform: scale(0.8) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Image side ── */
+.header__image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
+    opacity: 0;
+    animation: fade-in 1s ease forwards 0.5s;
+}
+
+.header__image-scene {
+    perspective: 1000px;
+    width: 320px;
+    height: 380px;
+}
+
+.header__image-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: image-3d-float 6s ease-in-out infinite;
+}
+
+@keyframes image-3d-float {
+    0%,  100% { transform: rotateX(5deg) rotateY(-8deg) translateY(0); }
+    25%        { transform: rotateX(-3deg) rotateY(8deg) translateY(-12px); }
+    50%        { transform: rotateX(5deg) rotateY(-5deg) translateY(-20px); }
+    75%        { transform: rotateX(-2deg) rotateY(5deg) translateY(-10px); }
+}
+
+.header__image-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(0, 212, 255, 0.1),
+        inset 0 0 60px rgba(0, 212, 255, 0.05);
+}
+
+.header__image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.header__image-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.2), transparent 70%);
+    z-index: 1;
+    border-radius: 50px;
+}
+
+/* ── Spinning rings ── */
+.header__image-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring1 {
+    width: 110%;
+    height: 110%;
+    animation: ring-spin 12s linear infinite;
+    border-style: dashed;
+}
+
+.ring2 {
+    width: 125%;
+    height: 125%;
+    animation: ring-spin 20s linear infinite reverse;
+    border-color: rgba(123, 47, 255, 0.15);
+}
+
+@keyframes ring-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Orbit labels ── */
+.orbit-label {
+    position: absolute;
+    background: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    backdrop-filter: blur(10px);
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50px;
+    animation: orbit-float 4s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.ol-1 { top: 10%;  left: 0;    animation-delay: 0s; }
+.ol-2 { top: 30%;  right: -5%; animation-delay: 1s; }
+.ol-3 { bottom: 25%; left: -5%; animation-delay: 2s; }
+.ol-4 { bottom: 10%; right: 5%; animation-delay: 3s; }
+
+@keyframes orbit-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+/* ── Scroll indicator ── */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
-    text-align: center;
-    position: relative;
+    gap: 0.4rem;
+    color: var(--color-light);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    z-index: 2;
+    animation: fade-up 1s ease forwards 1.5s, scroll-bounce 2s ease-in-out infinite 2s;
+    opacity: 0;
 }
 
-/* Center Container */
-.header__container {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    text-align: center;
+.scroll-indicator__line {
+    width: 1.5px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--color-primary), transparent);
+    border-radius: 1px;
 }
 
-/* Move Information Higher */
-h1 {
-    margin-bottom: 0.5rem;
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
 }
 
-h5.text-light {
-    margin-bottom: 1rem;
+/* ── Entrance animations ── */
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ============== Profile Image Centered ============== */
-/* ============== Move Profile Image Up to Create Space Below ============== */
-.me {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
-    position: relative;
-    top: 10px; /* Adjust height to create space */
-    animation: float 4s ease-in-out infinite;
-    z-index: 10; /* Ensures image stays on top */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-/* ================== Social Icons Below Profile Image ================== */
-.socials-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 3rem; /* Moves social icons below profile image */
-    position: relative;
-    z-index: 20; /* Ensures social icons are above all elements */
-}
-
-/* Styling for Social Icons */
-.header__socials a {
-    font-size: 1.8rem;
-    color: white;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-    /* Hover Effect */
-    .header__socials a:hover {
-        transform: scale(1.2);
-        color: cyan;
-        text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-    }
-
-
-/* Floating Animation */
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-/* ================== Experience Cloud (Left & Right Alignment) ================== */
-.experience-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Left & Right Experience Columns */
-.experience-left, .experience-right {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-    /* Experience Tags */
-    .experience-left span,
-    .experience-right span {
-        background: rgba(0, 255, 255, 0.2);
-        padding: 8px 14px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        color: white;
-        box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
-        text-align: center;
-        width: 150px;
-        animation: floatUp 3s infinite alternate ease-in-out;
-    }
-
-/* Floating Effect for Experience Tags */
-@keyframes floatUp {
-    0% {
-        transform: translateY(0px);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-10px);
-        opacity: 0.7;
-    }
-}
-
-/* ================== Responsive Fixes ================== */
+/* ══════════════════ Responsive ══════════════════ */
 @media screen and (max-width: 1024px) {
-    header {
-        height: 90vh;
+    .header__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
     }
 
-    .cta {
-        flex-direction: column;
+    .header__text {
         align-items: center;
+        order: 2;
     }
 
-    .experience-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    .header__image-wrapper {
+        order: 1;
+        height: 360px;
     }
+
+    .header__image-scene {
+        width: 240px;
+        height: 300px;
+    }
+
+    .orbit-label { display: none; }
 }
 
 @media screen and (max-width: 600px) {
-    header {
-        height: 100vh;
+    .header {
+        padding-top: 4rem;
+        min-height: auto;
+        padding-bottom: 4rem;
     }
 
-    .me {
-        width: 120px;
-        height: 120px;
+    .header__container {
+        padding: 1rem 0;
     }
 
-    .cta {
-        flex-direction: column;
-        align-items: center;
+    .header__image-wrapper {
+        height: 280px;
     }
 
-    .experience-left, .experience-right {
-        gap: 10px;
+    .header__image-scene {
+        width: 200px;
+        height: 240px;
     }
 
-        .experience-left span, .experience-right span {
-            width: 120px;
-        }
-
-    .socials-wrapper {
-        margin-top: 2rem; /* Keeps social icons properly below */
+    .header__tags {
+        justify-content: center;
     }
+
+    .orb { display: none; }
 }
