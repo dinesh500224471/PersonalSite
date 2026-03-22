@@ -45,8 +45,8 @@ const CTA = () => {
         <>
             <div ref={particlesRef} className="dl-particles-layer" aria-hidden="true" />
             <div className="cta__buttons">
-                <a
-                    href="#"
+                <button
+                    type="button"
                     className={`btn btn-download${downloading ? ' downloading' : ''}${done ? ' done' : ''}`}
                     onClick={handleDownload}
                     aria-label="Download Resume"
@@ -58,7 +58,7 @@ const CTA = () => {
                         {done ? 'Downloaded!' : downloading ? 'Downloading…' : 'Download CV'}
                     </span>
                     {downloading && <span className="btn-download__bar" />}
-                </a>
+                </button>
 
                 <a href="#contact" className="btn btn-primary">
                     Let's Connect
