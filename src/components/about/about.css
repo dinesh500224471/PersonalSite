@@ -1,194 +1,171 @@
-/* ================== About Section Styling ================== */
+/* ═══════════════════════════════════════
+   ABOUT – 3D Tilt Cards + Reveal
+═══════════════════════════════════════ */
 .about__container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5%;
-    padding: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
 }
 
-/* Left Image Section */
-.about__me {
-    width: 100%;
-    max-width: 380px;
-    aspect-ratio: 1/1;
-    border-radius: 20px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.6));
+/* ── Left image ── */
+.about__image-wrap {
     display: flex;
-    align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease-in-out;
 }
 
-    .about__me:hover {
-        transform: scale(1.05);
-    }
+.about__image-border {
+    position: relative;
+    width: 300px;
+}
 
-.about__me-image {
-    width: 90%;
-    border-radius: 20px;
+.about__image-inner {
+    border-radius: 24px;
     overflow: hidden;
-    transform: rotate(4deg);
-    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 2px solid var(--color-glass-border);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), var(--glow-card);
+    transition: var(--transition);
 }
 
-    .about__me-image:hover {
-        transform: rotate(0);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-    }
-
-/* Right Content Section */
-.about__content {
-    flex: 1;
-    padding: 1rem;
+.about__image-inner:hover {
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), var(--glow-primary);
+    transform: translateY(-6px);
 }
 
-/* About Cards */
-.about__cards {
+.about__image-inner img {
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Badge */
+.about__image-badge {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-bg);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: var(--glow-primary);
 }
 
-/* Glassmorphism Card Effect */
+/* ── Right content ── */
+.about__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ── Cards grid ── */
+.about__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
 .about__card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 1.8rem;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    background: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--border-radius);
+    padding: 1.4rem;
+    cursor: default;
+    transition: transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transform-style: preserve-3d;
     position: relative;
     overflow: hidden;
 }
 
-    /* Hover Effect with Scale and Glowing Border */
-    .about__card:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-        border: 2px solid var(--color-primary);
-    }
-
-    /* Background Glow Effect */
-    .about__card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-        transition: opacity 0.4s ease-in-out;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    /* Activate Glow on Hover */
-    .about__card:hover::before {
-        opacity: 1;
-    }
-
-/* Icons */
-.about__icon {
-    color: var(--color-primary);
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+.about__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, var(--card-color, #00d4ff), transparent 65%);
+    opacity: 0.06;
+    border-radius: inherit;
+    transition: opacity 0.3s;
 }
 
-/* Rotate Icon on Hover */
-.about__card:hover .about__icon {
-    transform: rotate(10deg) scale(1.2);
-    color: var(--color-light);
+.about__card:hover::before {
+    opacity: 0.12;
 }
 
-/* Text Animations */
-.about__card h5,
+.about__card:hover {
+    border-color: var(--card-color, var(--color-primary));
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--card-color, var(--color-primary));
+}
+
+.about__card-icon {
+    font-size: 1.6rem;
+    color: var(--card-color, var(--color-primary));
+    display: block;
+    margin-bottom: 0.6rem;
+    filter: drop-shadow(0 0 8px var(--card-color, var(--color-primary)));
+}
+
+.about__card h5 {
+    font-size: 0.95rem;
+    color: var(--color-white);
+    margin-bottom: 0.3rem;
+}
+
 .about__card small {
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-/* Move Text Slightly on Hover */
-.about__card:hover h5 {
-    transform: translateY(-3px);
-    color: white;
-}
-
-.about__card:hover small {
-    transform: translateY(-2px);
+    font-size: 0.75rem;
     color: var(--color-light);
+    line-height: 1.5;
 }
 
-/* About Text */
-.about__content p {
-    font-size: 1.05rem;
-    line-height: 1.7;
+/* ── Bio text ── */
+.about__bio p {
     color: var(--color-light);
-    margin-bottom: 2rem;
-    text-align: justify;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
 }
 
-/* CTA Button */
-.btn-primary {
-    display: inline-block;
-    padding: 0.9rem 1.6rem;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    background: var(--color-primary);
-    color: white;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+.about__bio strong {
+    color: var(--color-lighter);
+    font-weight: 600;
 }
 
-    .btn-primary:hover {
-        background: white;
-        color: var(--color-primary);
-        transform: scale(1.07);
-    }
-
-/* ================== Responsive Styling ================== */
+/* ══════════════════ Responsive ══════════════════ */
 @media screen and (max-width: 1024px) {
     .about__container {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 3rem;
         text-align: center;
-        gap: 2rem;
     }
 
-    .about__me {
-        max-width: 300px;
+    .about__image-border {
+        margin: 0 auto;
     }
 
-    .about__cards {
-        flex-direction: column;
+    .about__content {
         align-items: center;
     }
 
-    .about__card {
-        width: 85%;
+    .about__bio {
+        text-align: left;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .about__me {
-        max-width: 220px;
+    .about__cards {
+        grid-template-columns: 1fr;
     }
 
-    .about__card {
-        width: 100%;
-        padding: 1.5rem;
+    .about__image-border {
+        width: 240px;
     }
 
-    .about__icon {
-        font-size: 1.6rem;
-    }
-
-    .about__content p {
-        font-size: 1rem;
+    .about__image-inner img {
+        height: 280px;
     }
 }
