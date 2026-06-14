@@ -6,6 +6,7 @@ import About from './components/about/About';
 import Experience from './components/experience/Experience';
 import Skills from './components/skills/Skills';
 import Services from './components/services/Services';
+import Certifications from './components/certifications/Certifications';
 import Portfolio from './components/portfolio/Portfolio';
 import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
@@ -13,7 +14,6 @@ import ThreeBackground from './components/background/ThreeBackground';
 import ElasticCursor from './components/cursor/ElasticCursor';
 
 const App = () => {
-    /* Smooth scroll */
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -25,14 +25,13 @@ const App = () => {
         return () => cancelAnimationFrame(id);
     }, []);
 
-    /* Global scroll-reveal */
     useEffect(() => {
         const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
         const obs = new IntersectionObserver(
             entries => entries.forEach(e => {
                 if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
             }),
-            { threshold: 0.12 }
+            { threshold: 0.1 }
         );
         els.forEach(el => obs.observe(el));
         return () => obs.disconnect();
@@ -48,8 +47,9 @@ const App = () => {
                 <About />
                 <Experience />
                 <Skills />
-                <Services />
+                <Certifications />
                 <Portfolio />
+                <Services />
                 <Contact />
                 <Footer />
             </div>

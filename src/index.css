@@ -259,6 +259,12 @@ section {
     color: var(--color-primary);
 }
 
+/* Page content sits above Three.js fixed canvas */
+.site-content {
+    position: relative;
+    z-index: 1;
+}
+
 img {
     display: block;
     width: 100%;

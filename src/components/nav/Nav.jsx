@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import './nav.css';
 import { BiHomeHeart, BiUser, BiBookBookmark, BiMessageSquareDetail, BiShield } from 'react-icons/bi';
-import { HiDocumentText } from 'react-icons/hi';
+import { HiDocumentText, HiBadgeCheck } from 'react-icons/hi';
 
 const links = [
-    { id: '#home',       icon: <BiHomeHeart />,           label: 'Home'     },
-    { id: '#about',      icon: <BiUser />,                label: 'About'    },
-    { id: '#experience', icon: <BiBookBookmark />,         label: 'Experience' },
-    { id: '#skills',     icon: <BiShield />,              label: 'Arsenal'  },
-    { id: '#portfolio',  icon: <HiDocumentText />,         label: 'Projects' },
-    { id: '#contact',    icon: <BiMessageSquareDetail />,  label: 'Contact'  },
+    { id: '#home',             icon: <BiHomeHeart />,          label: 'Home'    },
+    { id: '#about',            icon: <BiUser />,               label: 'About'   },
+    { id: '#skills',           icon: <BiShield />,             label: 'Arsenal' },
+    { id: '#certifications',   icon: <HiBadgeCheck />,         label: 'Certs'   },
+    { id: '#portfolio',        icon: <HiDocumentText />,        label: 'Projects'},
+    { id: '#contact',          icon: <BiMessageSquareDetail />, label: 'Contact' },
 ];
 
 const Nav = () => {
     const [activeNav, setActiveNav] = useState('#home');
 
-    /* Scroll-spy: highlight nav based on viewport position */
     useEffect(() => {
-        const sections = links
-            .map(l => document.querySelector(l.id))
-            .filter(Boolean);
-
+        const sections = links.map(l => document.querySelector(l.id)).filter(Boolean);
         const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setActiveNav(`#${entry.target.id}`);
-                    }
-                });
-            },
-            { threshold: 0.4 }
+            entries => entries.forEach(e => {
+                if (e.isIntersecting) setActiveNav(`#${e.target.id}`);
+            }),
+            { threshold: 0.35 }
         );
-
         sections.forEach(s => observer.observe(s));
         return () => observer.disconnect();
     }, []);
