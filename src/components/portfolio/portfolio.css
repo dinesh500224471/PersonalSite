@@ -159,11 +159,171 @@
     gap: 0.4rem;
 }
 
+/* ── Research paper card ── */
+.pf-card--research {
+    grid-column: 1 / -1;
+}
+
+.pf-research__banner {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg,
+        rgba(0, 184, 148, 0.12) 0%,
+        rgba(0, 212, 255, 0.06) 50%,
+        rgba(123, 47, 255, 0.1) 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    border-bottom: 1px solid rgba(0, 184, 148, 0.2);
+}
+
+/* CSS grid lines background */
+.pf-research__grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 184, 148, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 184, 148, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Animated botnet nodes */
+.pf-research__nodes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.pf-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pf-color);
+    box-shadow: 0 0 12px var(--pf-color);
+    animation: node-pulse 3s ease-in-out infinite;
+}
+
+.pf-node--1  { top: 20%;  left: 12%;  animation-delay: 0s; }
+.pf-node--2  { top: 60%;  left: 22%;  animation-delay: 0.4s; }
+.pf-node--3  { top: 35%;  left: 40%;  animation-delay: 0.8s; }
+.pf-node--4  { top: 75%;  left: 50%;  animation-delay: 1.2s; }
+.pf-node--5  { top: 15%;  left: 60%;  animation-delay: 0.6s; }
+.pf-node--6  { top: 50%;  left: 72%;  animation-delay: 1s; }
+.pf-node--7  { top: 80%;  left: 80%;  animation-delay: 0.2s; }
+.pf-node--8  { top: 25%;  left: 85%;  animation-delay: 1.4s; }
+.pf-node--9  { top: 65%;  left: 92%;  animation-delay: 0.9s; }
+
+@keyframes node-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.5); }
+}
+
+.pf-research__label {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.pf-research__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(0, 184, 148, 0.15);
+    border: 1px solid rgba(0, 184, 148, 0.4);
+    color: var(--pf-color);
+    width: fit-content;
+}
+
+.pf-research__venue {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+}
+
+.pf-research__authors {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+}
+
+/* Research body — two column on wide screens */
+.pf-research__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem 2rem;
+    align-items: start;
+}
+
+.pf-research__body .pf-card__header { grid-column: 1 / -1; }
+.pf-research__body .pf-card__desc   { grid-column: 1; }
+
+.pf-research__contributions {
+    grid-column: 2;
+    grid-row: 2 / 4;
+}
+
+.pf-research__contributions h4 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pf-color);
+    margin-bottom: 0.7rem;
+}
+
+.pf-research__contributions ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pf-research__contributions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+}
+
+.pf-research__contributions .pf-dot {
+    margin-top: 6px;
+}
+
+.pf-research__footer {
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 /* ── Responsive ── */
 @media screen and (max-width: 768px) {
     .portfolio__grid { grid-template-columns: 1fr; }
+    .pf-research__body {
+        grid-template-columns: 1fr;
+    }
+    .pf-research__body .pf-card__desc,
+    .pf-research__contributions,
+    .pf-research__footer {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .pf-research__banner { height: 160px; }
 }
 
 @media screen and (max-width: 600px) {
     .pf-card__image { height: 180px; }
+    .pf-research__banner { height: 140px; }
+    .pf-node { width: 6px; height: 6px; }
 }
