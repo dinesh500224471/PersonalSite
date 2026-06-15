@@ -6,7 +6,7 @@ import { HiDocumentText, HiBadgeCheck } from 'react-icons/hi';
 const links = [
     { id: '#home',             icon: <BiHomeHeart />,          label: 'Home'    },
     { id: '#about',            icon: <BiUser />,               label: 'About'   },
-    { id: '#skills',           icon: <BiShield />,             label: 'Arsenal' },
+    { id: '#skills',           icon: <BiShield />,             label: 'Skills'  },
     { id: '#certifications',   icon: <HiBadgeCheck />,         label: 'Certs'   },
     { id: '#portfolio',        icon: <HiDocumentText />,        label: 'Projects'},
     { id: '#contact',          icon: <BiMessageSquareDetail />, label: 'Contact' },

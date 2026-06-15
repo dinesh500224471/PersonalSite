@@ -3,9 +3,7 @@ import Lenis from 'lenis';
 import Header from './components/header/Header';
 import Nav from './components/nav/Nav';
 import About from './components/about/About';
-import Experience from './components/experience/Experience';
 import Skills from './components/skills/Skills';
-import Services from './components/services/Services';
 import Certifications from './components/certifications/Certifications';
 import Portfolio from './components/portfolio/Portfolio';
 import Contact from './components/contact/Contact';
@@ -40,11 +38,9 @@ const App = () => {
             <Header />
             <Nav />
             <About />
-            <Experience />
             <Skills />
             <Certifications />
             <Portfolio />
-            <Services />
             <Contact />
             <Footer />
         </main>
