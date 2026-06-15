@@ -11,14 +11,14 @@ const projects = [
         image: IMG1,
         title: 'Windows XP – Password Cracking',
         subtitle: 'Vulnerability Research',
-        description: 'Demonstrated end-to-end user account creation and password cracking on a Windows XP VM using Cain & Abel. Exposed legacy OS weaknesses and documented exploit techniques.',
-        tags: ['Windows XP', 'Cain & Abel', 'NTLM', 'VM Lab'],
+        description: 'Demonstrated end-to-end account creation and password cracking on a Windows XP VM using Cain & Abel. Exposed legacy OS weaknesses and documented exploit techniques.',
         what: [
-            'Set up isolated Windows XP VM environment',
-            'Created user accounts, captured and cracked NTLM hashes',
-            'Documented legacy vulnerabilities and modern mitigations',
+            'Set up an isolated Windows XP VM environment for safe exploitation',
+            'Created user accounts, captured and cracked NTLM password hashes',
+            'Documented vulnerabilities and recommended modern mitigations',
         ],
-        github: 'https://github.com/dinesh500224471/Windows-XP_Cain-Abel',
+        tags: ['Windows XP', 'Cain & Abel', 'NTLM', 'VM Lab'],
+        link: 'https://github.com/dinesh500224471/Windows-XP_Cain-Abel',
         color: '#ff4757',
     },
     {
@@ -26,14 +26,14 @@ const projects = [
         image: IMG2,
         title: 'Cinema Ticket Machine',
         subtitle: 'Java OOP Application',
-        description: 'A fully-functional Java cinema ticketing system with seat selection, pricing tiers, and payment simulation built using OOP principles in NetBeans IDE.',
-        tags: ['Java', 'OOP', 'NetBeans', 'GUI'],
+        description: 'A fully-functional Java cinema ticketing system with seat selection, pricing tiers, and payment simulation — built using object-oriented principles in NetBeans IDE.',
         what: [
-            'Designed interactive seat-map UI with real-time availability',
-            'Built payment simulation with receipt generation',
-            'Applied MVC architecture and encapsulation principles',
+            'Designed an interactive seat-map UI with real-time availability tracking',
+            'Built a payment simulation module with receipt generation',
+            'Applied MVC architecture, encapsulation, and inheritance throughout',
         ],
-        github: 'https://github.com/dinesh500224471/CinemaTicketMachine',
+        tags: ['Java', 'OOP', 'NetBeans', 'GUI'],
+        link: 'https://github.com/dinesh500224471/CinemaTicketMachine',
         color: '#7b2fff',
     },
     {
@@ -41,14 +41,14 @@ const projects = [
         image: IMG3,
         title: 'Microsoft Malware Analysis',
         subtitle: 'Data Science & Security',
-        description: 'Deep data-science analysis on the Microsoft Malware Prediction dataset using Python. Identified malware distribution patterns across 9M+ rows.',
-        tags: ['Python', 'Pandas', 'Jupyter', 'Data Viz'],
+        description: 'Deep data-science analysis on the Microsoft Malware Prediction dataset using Python. Identified malware distribution patterns across 9 million+ records.',
         what: [
-            'Cleaned and preprocessed a 9M+ row real-world dataset',
-            'EDA revealed malware cluster patterns by OS and region',
-            'Generated correlation heatmaps and feature importance charts',
+            'Cleaned and preprocessed a real-world dataset with 9M+ rows in Pandas',
+            'EDA revealed malware cluster patterns segmented by OS version and region',
+            'Generated correlation heatmaps and feature importance charts for reporting',
         ],
-        github: 'https://github.com/dinesh500224471/Microsoft-Malware',
+        tags: ['Python', 'Pandas', 'Jupyter', 'Data Viz'],
+        link: 'https://github.com/dinesh500224471/Microsoft-Malware',
         color: '#00d4ff',
     },
     {
@@ -57,59 +57,40 @@ const projects = [
         title: 'Cryptography Algorithms',
         subtitle: 'Python Implementation',
         description: 'Implemented classical and modern cryptographic algorithms in Python — Caesar, Vigenère, AES-like block cipher, and RSA key generation with an interactive CLI.',
-        tags: ['Python', 'AES', 'RSA', 'Cryptography'],
         what: [
-            'Coded Caesar, Vigenère, and block cipher substitution',
-            'Simulated RSA key-pair generation and message signing',
-            'Built interactive encrypt / decrypt CLI tool',
+            'Coded substitution ciphers (Caesar, Vigenère) and an AES-style block cipher',
+            'Simulated RSA key-pair generation and message signing from scratch',
+            'Built an interactive encrypt / decrypt CLI tool for all algorithms',
         ],
-        github: 'https://github.com/dinesh500224471/Crytpography',
+        tags: ['Python', 'AES', 'RSA', 'Cryptography'],
+        link: 'https://github.com/dinesh500224471/Crytpography',
         color: '#7b2fff',
     },
 ];
 
 const research = {
-    id: 5,
     title: 'Botnet Technology: A Persistent Threat to Digital Infrastructure',
     subtitle: 'Published Research Paper',
-    venue: 'Preprints.org · December 2024',
-    authors: 'D. Chapagain · B. Aryal · D. Chhetri · B. Bastakoti',
+    venue: 'Preprints.org',
+    date: 'December 2024',
+    authors: 'Devendra Chapagain · Bindu Aryal · Dinesh Chhetri · Bijay Bastakoti',
     description:
-        'Comprehensive academic study on modern botnet ecosystems — examining topologies, covert communication protocols, and evasion techniques that make botnets one of the most resilient threats to digital infrastructure.',
-    tags: ['Botnet', 'Threat Intelligence', 'C2 Protocols', 'Cybersecurity', 'Research'],
+        'A comprehensive study on modern botnet ecosystems — examining topologies, covert C2 communication protocols, and evasion techniques that make botnets one of the most resilient and dangerous threats in the cyber landscape.',
     what: [
-        'Classified centralized, decentralized, and P2P botnet architectures with resilience analysis',
-        'Mapped covert C2 communication channels and protocol-level evasion mechanisms',
-        'Surveyed detection strategies: traffic analysis, ML-based anomaly detection, and DNS sinkholes',
-        'Proposed mitigation frameworks for enterprise and critical infrastructure environments',
+        'Classified centralized, decentralized, and peer-to-peer (P2P) botnet architectures, comparing resilience and operational profiles',
+        'Mapped covert command-and-control (C2) channels and protocol-level evasion mechanisms used to avoid detection',
+        'Surveyed detection strategies including traffic anomaly analysis, ML-based behavioral detection, and DNS sinkholing',
+        'Proposed mitigation frameworks for enterprise networks and critical infrastructure environments',
     ],
+    tags: ['Botnet', 'C2 Protocols', 'Threat Intelligence', 'Malware', 'Cybersecurity'],
     link: 'https://www.preprints.org/manuscript/202412.0660/v1',
     color: '#00b894',
 };
 
-/* ─── Standard project card ─── */
 const ProjectCard = ({ project }) => (
     <article className="pf-card reveal" style={{ '--pf-color': project.color }}>
         <div className="pf-card__image">
             <img src={project.image} alt={project.title} loading="lazy" />
-            <div className="pf-card__overlay">
-                <div className="pf-card__overlay-content">
-                    <h4>What I did</h4>
-                    <ul>
-                        {project.what.map((w, i) => (
-                            <li key={i}><span className="pf-dot" />{w}</li>
-                        ))}
-                    </ul>
-                    <a
-                        href={project.github}
-                        className="btn btn-primary pf-card__btn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        View on GitHub
-                    </a>
-                </div>
-            </div>
         </div>
         <div className="pf-card__body">
             <div className="pf-card__header">
@@ -118,7 +99,7 @@ const ProjectCard = ({ project }) => (
                     <h3 className="pf-card__title">{project.title}</h3>
                 </div>
                 <a
-                    href={project.github}
+                    href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="pf-card__arrow"
@@ -126,48 +107,55 @@ const ProjectCard = ({ project }) => (
                 >↗</a>
             </div>
             <p className="pf-card__desc">{project.description}</p>
-            <div className="pf-card__tags">
-                {project.tags.map((t, i) => <span className="tag" key={i}>{t}</span>)}
+            <div className="pf-card__work">
+                <h4 className="pf-card__work-label">What I did</h4>
+                <ul>
+                    {project.what.map((w, i) => (
+                        <li key={i}><span className="pf-dot" />{w}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className="pf-card__footer">
+                <div className="pf-card__tags">
+                    {project.tags.map((t, i) => <span className="tag" key={i}>{t}</span>)}
+                </div>
+                <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline pf-card__btn"
+                >
+                    View on GitHub
+                </a>
             </div>
         </div>
     </article>
 );
 
-/* ─── Research paper card (full-width, no image) ─── */
 const ResearchCard = ({ paper }) => (
     <article className="pf-card pf-card--research reveal" style={{ '--pf-color': paper.color }}>
-        <div className="pf-research__banner">
-            <div className="pf-research__grid-lines" aria-hidden="true" />
-            <div className="pf-research__nodes" aria-hidden="true">
-                {Array.from({ length: 9 }).map((_, i) => (
-                    <span key={i} className={`pf-node pf-node--${i + 1}`} />
-                ))}
-            </div>
-            <div className="pf-research__label">
+        <div className="pf-research__header">
+            <div className="pf-research__meta">
                 <span className="pf-research__badge">Research Paper</span>
-                <p className="pf-research__venue">{paper.venue}</p>
-                <p className="pf-research__authors">{paper.authors}</p>
+                <span className="pf-research__venue">{paper.venue} · {paper.date}</span>
             </div>
+            <a
+                href={paper.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pf-card__arrow"
+                aria-label="Read the paper on Preprints.org"
+            >↗</a>
         </div>
 
-        <div className="pf-card__body pf-research__body">
-            <div className="pf-card__header">
-                <div>
-                    <span className="pf-card__subtitle">{paper.subtitle}</span>
-                    <h3 className="pf-card__title">{paper.title}</h3>
-                </div>
-                <a
-                    href={paper.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pf-card__arrow"
-                    aria-label="View paper on Preprints.org"
-                >↗</a>
-            </div>
+        <div className="pf-card__body">
+            <span className="pf-card__subtitle">{paper.subtitle}</span>
+            <h3 className="pf-card__title">{paper.title}</h3>
+            <p className="pf-research__authors">{paper.authors}</p>
             <p className="pf-card__desc">{paper.description}</p>
 
-            <div className="pf-research__contributions">
-                <h4>Key Contributions</h4>
+            <div className="pf-card__work">
+                <h4 className="pf-card__work-label">Key contributions</h4>
                 <ul>
                     {paper.what.map((w, i) => (
                         <li key={i}><span className="pf-dot" />{w}</li>
@@ -175,7 +163,7 @@ const ResearchCard = ({ paper }) => (
                 </ul>
             </div>
 
-            <div className="pf-research__footer">
+            <div className="pf-card__footer">
                 <div className="pf-card__tags">
                     {paper.tags.map((t, i) => <span className="tag" key={i}>{t}</span>)}
                 </div>
@@ -183,7 +171,7 @@ const ResearchCard = ({ paper }) => (
                     href={paper.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-outline pf-card__btn"
+                    className="btn btn-primary pf-card__btn"
                 >
                     Read Paper
                 </a>

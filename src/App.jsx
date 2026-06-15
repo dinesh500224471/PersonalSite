@@ -10,8 +10,6 @@ import Certifications from './components/certifications/Certifications';
 import Portfolio from './components/portfolio/Portfolio';
 import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
-import ThreeBackground from './components/background/ThreeBackground';
-import ElasticCursor from './components/cursor/ElasticCursor';
 
 const App = () => {
     useEffect(() => {
@@ -38,22 +36,18 @@ const App = () => {
     }, []);
 
     return (
-        <>
-            <ThreeBackground />
-            <ElasticCursor />
-            <div className="site-content">
-                <Header />
-                <Nav />
-                <About />
-                <Experience />
-                <Skills />
-                <Certifications />
-                <Portfolio />
-                <Services />
-                <Contact />
-                <Footer />
-            </div>
-        </>
+        <main>
+            <Header />
+            <Nav />
+            <About />
+            <Experience />
+            <Skills />
+            <Certifications />
+            <Portfolio />
+            <Services />
+            <Contact />
+            <Footer />
+        </main>
     );
 };
 
