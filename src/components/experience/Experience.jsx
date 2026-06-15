@@ -1,99 +1,81 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import './experience.css';
 
-const categories = [
+const jobs = [
     {
-        title: 'Programming & Scripting',
+        role: 'Security Analyst',
+        company: 'D & D ERP Consulting',
+        period: '2023 – Present',
         color: '#00d4ff',
-        skills: [
-            { name: 'Python',      level: 'Intermediate', pct: 68 },
-            { name: 'C++',         level: 'Experienced',  pct: 75 },
-            { name: 'JavaScript',  level: 'Experienced',  pct: 72 },
-            { name: 'SQL',         level: 'Experienced',  pct: 78 },
+        responsibilities: [
+            'Implemented RBAC and MFA across 200+ user accounts, reducing unauthorised access incidents',
+            'Deployed Okta SSO integration, streamlining authentication across multiple departments',
+            'Monitored and responded to security events using Microsoft Sentinel SIEM platform',
+            'Conducted quarterly access reviews and security audits for compliance assurance',
         ],
+        tools: ['Okta', 'Azure AD', 'Microsoft Sentinel', 'MFA', 'RBAC'],
     },
     {
-        title: 'Cybersecurity & Pentesting',
+        role: 'IT Administrator',
+        company: 'Private Organisation',
+        period: '2021 – 2023',
         color: '#7b2fff',
-        skills: [
-            { name: 'Nmap',          level: 'Experienced',  pct: 85 },
-            { name: 'Wireshark',     level: 'Experienced',  pct: 82 },
-            { name: 'Metasploit',    level: 'Intermediate', pct: 65 },
-            { name: 'Burp Suite',    level: 'Intermediate', pct: 60 },
+        responsibilities: [
+            'Managed Active Directory for 100+ user accounts with strict access control policies',
+            'Maintained network infrastructure and Windows Server environments at 99.5% uptime',
+            'Secured network perimeter using pfSense firewall rules and continuous traffic monitoring',
+            'Deployed patches, managed Group Policy, and handled escalated helpdesk incidents',
         ],
+        tools: ['Active Directory', 'Windows Server', 'pfSense', 'Wireshark', 'PowerShell'],
     },
     {
-        title: 'IAM & Cloud Security',
-        color: '#00d4ff',
-        skills: [
-            { name: 'Okta',                     level: 'Experienced', pct: 88 },
-            { name: 'Azure AD / Entra ID',      level: 'Experienced', pct: 85 },
-            { name: 'SIEM (Sentinel)',           level: 'Experienced', pct: 80 },
-            { name: 'MFA & SSO',                level: 'Experienced', pct: 90 },
+        role: 'Security Researcher',
+        company: 'Loyalist College',
+        period: '2024',
+        color: '#00b894',
+        responsibilities: [
+            'Researched botnet topologies: centralized, decentralized, and peer-to-peer architectures',
+            'Analysed covert C2 communication channels and protocol-level evasion mechanisms',
+            'Surveyed ML-based detection strategies including traffic anomaly analysis and DNS sinkholing',
+            'Co-authored and published findings on Preprints.org — December 2024',
         ],
+        tools: ['Threat Intelligence', 'Malware Analysis', 'Academic Research', 'Technical Writing'],
     },
 ];
 
-const SkillBar = ({ name, level, pct, color, visible }) => (
-    <div className="skill-row">
-        <div className="skill-row__meta">
-            <span className="skill-row__name">{name}</span>
-            <span className="skill-row__level">{level}</span>
-        </div>
-        <div className="skill-row__track">
-            <div
-                className="skill-row__fill"
-                style={{
-                    '--fill-pct': `${pct}%`,
-                    '--fill-color': color,
-                    width: visible ? `${pct}%` : '0%',
-                }}
-            />
-            <span className="skill-row__pct" style={{ opacity: visible ? 1 : 0 }}>{pct}%</span>
-        </div>
-    </div>
-);
-
-const CategoryCard = ({ title, color, skills }) => {
-    const ref = useRef(null);
-    const [visible, setVisible] = React.useState(false);
-
-    useEffect(() => {
-        const obs = new IntersectionObserver(
-            ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-            { threshold: 0.25 }
-        );
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
-
-    return (
-        <div
-            ref={ref}
-            className={`exp-card reveal${visible ? ' visible' : ''}`}
-            style={{ '--card-accent': color }}
-        >
-            <div className="exp-card__header">
-                <div className="exp-card__dot" />
-                <h3 className="exp-card__title">{title}</h3>
-            </div>
-            <div className="exp-card__skills">
-                {skills.map((s, i) => (
-                    <SkillBar key={i} {...s} color={color} visible={visible} />
-                ))}
-            </div>
-        </div>
-    );
-};
-
 const Experience = () => (
     <section id="experience">
-        <span className="section__tag">My Technical Expertise</span>
-        <h2 className="section__title">Skills &amp; Experience</h2>
+        <span className="section__tag">Career History</span>
+        <h2 className="section__title">Experience</h2>
 
-        <div className="container experience__grid">
-            {categories.map((cat, i) => (
-                <CategoryCard key={i} {...cat} />
+        <div className="container timeline">
+            <div className="timeline__line" aria-hidden="true" />
+            {jobs.map((job, i) => (
+                <div key={i} className="timeline__entry reveal-right">
+                    <div className="timeline__dot" style={{ '--dot-color': job.color }} />
+                    <article className="timeline__card" style={{ '--entry-color': job.color }}>
+                        <div className="timeline__card-head">
+                            <div>
+                                <h3 className="timeline__role">{job.role}</h3>
+                                <span className="timeline__company">{job.company}</span>
+                            </div>
+                            <span className="timeline__period">{job.period}</span>
+                        </div>
+                        <ul className="timeline__list">
+                            {job.responsibilities.map((r, j) => (
+                                <li key={j}>
+                                    <span className="timeline__bullet" />
+                                    {r}
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="timeline__tools">
+                            {job.tools.map((t, j) => (
+                                <span key={j} className="timeline__tool">{t}</span>
+                            ))}
+                        </div>
+                    </article>
+                </div>
             ))}
         </div>
     </section>

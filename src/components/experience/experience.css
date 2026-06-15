@@ -1,142 +1,156 @@
-/* ═══════════════════════════════════════
-   EXPERIENCE – Animated Skill Bars
-═══════════════════════════════════════ */
-.experience__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-/* ── Category card ── */
-.exp-card {
-    background: var(--color-glass);
-    border: 1px solid var(--color-glass-border);
-    border-radius: var(--border-radius);
-    padding: 2rem;
+/* ─── Experience Timeline ─── */
+.timeline {
     position: relative;
-    overflow: hidden;
-    transition: var(--transition);
-}
-
-.exp-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--card-accent, var(--color-primary)), transparent);
-    opacity: 0.7;
-}
-
-.exp-card:hover {
-    border-color: var(--card-accent, var(--color-primary));
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--card-accent, var(--color-primary));
-    transform: translateY(-4px);
-}
-
-/* ── Card header ── */
-.exp-card__header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.75rem;
-}
-
-.exp-card__dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--card-accent, var(--color-primary));
-    box-shadow: 0 0 10px var(--card-accent, var(--color-primary));
-    flex-shrink: 0;
-}
-
-.exp-card__title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-lighter);
-    letter-spacing: 0.02em;
-}
-
-/* ── Skill rows ── */
-.exp-card__skills {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 0;
 }
 
-.skill-row {}
+/* Vertical line */
+.timeline__line {
+    position: absolute;
+    left: 18px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        var(--color-primary),
+        var(--color-secondary) 50%,
+        #00b894
+    );
+    opacity: 0.3;
+}
 
-.skill-row__meta {
+/* Each row */
+.timeline__entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+}
+
+.timeline__entry:last-child { padding-bottom: 0; }
+
+/* Dot on the line */
+.timeline__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--dot-color, var(--color-primary));
+    box-shadow: 0 0 0 3px rgba(5, 5, 15, 1), 0 0 0 5px var(--dot-color, var(--color-primary));
+    flex-shrink: 0;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+    animation: dot-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes dot-glow {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(5,5,15,1), 0 0 0 5px var(--dot-color); }
+    50%       { box-shadow: 0 0 0 3px rgba(5,5,15,1), 0 0 0 8px var(--dot-color), 0 0 20px var(--dot-color); }
+}
+
+/* Card */
+.timeline__card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--entry-color);
+    border-radius: 0 14px 14px 0;
+    padding: 1.5rem 1.6rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline__card:hover {
+    border-color: var(--entry-color);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.timeline__card-head {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.4rem;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
 }
 
-.skill-row__name {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--color-white);
-}
-
-.skill-row__level {
-    font-size: 0.75rem;
-    color: var(--color-light);
-}
-
-/* Track + bar */
-.skill-row__track {
-    position: relative;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.07);
-    border-radius: 10px;
-    overflow: visible;
-}
-
-.skill-row__fill {
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--fill-color), rgba(255,255,255,0.3));
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    box-shadow: 0 0 8px var(--fill-color);
-}
-
-.skill-row__fill::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--fill-color);
-    box-shadow: 0 0 10px var(--fill-color);
-}
-
-.skill-row__pct {
-    position: absolute;
-    right: -2px;
-    top: -22px;
-    font-size: 0.7rem;
+.timeline__role {
+    font-size: 1.05rem;
     font-weight: 700;
-    color: var(--fill-color, var(--color-primary));
-    transition: opacity 0.5s ease 1s;
+    color: #fff;
+    margin-bottom: 0.2rem;
 }
 
-/* ══════════════════ Responsive ══════════════════ */
-@media screen and (max-width: 1024px) {
-    .experience__grid {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-        margin: 0 auto;
-    }
+.timeline__company {
+    font-size: 0.82rem;
+    color: var(--entry-color);
+    font-weight: 500;
 }
 
+.timeline__period {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.35);
+    white-space: nowrap;
+    padding: 0.25rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    align-self: flex-start;
+}
+
+/* Responsibility list */
+.timeline__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.timeline__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+}
+
+.timeline__bullet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--entry-color);
+    flex-shrink: 0;
+    margin-top: 7px;
+}
+
+/* Tool tags */
+.timeline__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.timeline__tool {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
 @media screen and (max-width: 600px) {
-    .exp-card {
-        padding: 1.5rem;
-    }
+    .timeline__line { left: 12px; }
+    .timeline__entry { gap: 1.2rem; }
+    .timeline__dot { width: 11px; height: 11px; }
+    .timeline__card { padding: 1.2rem; }
+    .timeline__card-head { flex-direction: column; gap: 0.5rem; }
+    .timeline__period { align-self: flex-start; }
 }

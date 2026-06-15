@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './nav.css';
-import { BiHomeHeart, BiUser, BiBookBookmark, BiMessageSquareDetail, BiShield } from 'react-icons/bi';
+import { BiHomeHeart, BiUser, BiMessageSquareDetail, BiShield } from 'react-icons/bi';
 import { HiDocumentText, HiBadgeCheck } from 'react-icons/hi';
+import { MdWorkOutline } from 'react-icons/md';
 
 const links = [
-    { id: '#home',             icon: <BiHomeHeart />,          label: 'Home'    },
-    { id: '#about',            icon: <BiUser />,               label: 'About'   },
-    { id: '#skills',           icon: <BiShield />,             label: 'Skills'  },
-    { id: '#certifications',   icon: <HiBadgeCheck />,         label: 'Certs'   },
-    { id: '#portfolio',        icon: <HiDocumentText />,        label: 'Projects'},
-    { id: '#contact',          icon: <BiMessageSquareDetail />, label: 'Contact' },
+    { id: '#home',       icon: <BiHomeHeart />,          label: 'Home'       },
+    { id: '#about',      icon: <BiUser />,               label: 'About'      },
+    { id: '#experience', icon: <MdWorkOutline />,         label: 'Experience' },
+    { id: '#skills',     icon: <BiShield />,             label: 'Skills'     },
+    { id: '#portfolio',  icon: <HiDocumentText />,        label: 'Projects'   },
+    { id: '#contact',    icon: <BiMessageSquareDetail />, label: 'Contact'    },
 ];
 
 const Nav = () => {
