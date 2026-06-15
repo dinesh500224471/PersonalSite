@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════
-   CTA – Animated Download Button
-═══════════════════════════════════════ */
+/* ─── CTA buttons ─── */
 .cta__buttons {
     display: flex;
     gap: 1rem;
@@ -9,130 +7,20 @@
     animation: fade-up 0.7s ease forwards 1s;
 }
 
-/* ── Download button states ── */
-.btn-download {
-    position: relative;
-    border: 1.5px solid var(--color-primary);
-    color: var(--color-primary);
-    background: transparent;
-    overflow: hidden;
-    min-width: 160px;
-    justify-content: center;
-    transition: all 0.4s ease;
+.cta__resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.btn-download:hover {
-    background: rgba(0, 212, 255, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
-    color: var(--color-primary);
+.cta__resume-btn svg {
+    transition: transform 0.2s ease;
 }
 
-.btn-download__icon {
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-    min-width: 1rem;
-    text-align: center;
-}
-
-.btn-download:hover .btn-download__icon {
+.cta__resume-btn:hover svg {
     transform: translateY(2px);
 }
 
-.btn-download__text {
-    transition: var(--transition);
-}
-
-/* ── Downloading state ── */
-.btn-download.downloading {
-    border-color: var(--color-secondary);
-    color: var(--color-lighter);
-    pointer-events: none;
-}
-
-.btn-download__bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-    border-radius: 0 2px 2px 0;
-    animation: progress-bar 1.8s ease forwards;
-}
-
-@keyframes progress-bar {
-    from { width: 0%; }
-    to   { width: 100%; }
-}
-
-/* ── Spinning icon while downloading ── */
-.btn-download.downloading .btn-download__icon::before {
-    content: '';
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: var(--color-primary);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: middle;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* ── Done state ── */
-.btn-download.done {
-    border-color: #00ff88;
-    color: #00ff88;
-    background: rgba(0, 255, 136, 0.08);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-}
-
-/* ── Particle burst layer ── */
-.dl-particles-layer {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-/* Individual particle */
-.dl-particle {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    transform: translate(-50%, -50%);
-    animation: particle-burst 0.8s ease-out both;
-    box-shadow: 0 0 6px var(--color-primary);
-}
-
-.dl-particle:nth-child(even) {
-    background: var(--color-secondary);
-    box-shadow: 0 0 6px var(--color-secondary);
-}
-
-@keyframes particle-burst {
-    0% {
-        transform: translate(-50%, -50%) translate(0, 0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(0);
-        opacity: 0;
-    }
-}
-
-/* ══════════════════ Responsive ══════════════════ */
 @media screen and (max-width: 600px) {
-    .cta__buttons {
-        justify-content: center;
-    }
-
-    .btn-download {
-        min-width: 140px;
-    }
+    .cta__buttons { justify-content: center; }
 }
